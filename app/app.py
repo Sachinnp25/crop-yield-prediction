@@ -16,12 +16,16 @@ encoders = joblib.load("models/yield_encoders.pkl")
 # LOAD DATASET
 # ============================
 
+@st.cache_data
+def load_data():
+    return pd.read_csv("dataset/crop_data.csv")
+
 try:
-    crop_df = pd.read_csv("dataset/crop_data.csv")
+    crop_df = load_data()
+
 except Exception as e:
     st.error(f"Dataset Error: {e}")
     st.stop()
-
 # ============================
 # PAGE CONFIG
 # ============================
