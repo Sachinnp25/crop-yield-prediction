@@ -30,6 +30,8 @@ https://github.com/Sachinnp25/crop-yield-prediction
 ```plaintext
 CROP-YIELD-PROJECT/
 │
+├── .gitignore
+│
 ├── app/
 │   ├── app.py
 │   ├── train_crop_recommendation.py
@@ -88,6 +90,12 @@ Predicts crop yield (Ton/Hectare) using:
 * Crop Recommendation Report
 * Yield Prediction Report
 
+### 🔍 Model Explainability
+
+* Feature Importance Visualization
+* Interactive Plotly Charts
+* Insight into factors affecting crop recommendation
+
 ---
 
 ## 🛠️ Technologies Used
@@ -117,6 +125,34 @@ Predicts crop yield (Ton/Hectare) using:
 
 ---
 
+## ⚙️ Performance & Optimization
+
+### Dataset Caching
+
+The application uses Streamlit caching to improve performance while loading large agricultural datasets.
+
+```python
+@st.cache_data
+def load_data():
+    return pd.read_csv("dataset/crop_data.csv")
+```
+
+This prevents reloading the dataset on every user interaction and significantly improves application responsiveness.
+
+### Repository Management
+
+A `.gitignore` file is included to maintain a clean GitHub repository by excluding unnecessary files and folders.
+
+Ignored items include:
+
+* `__pycache__/`
+* `*.pyc`
+* `.streamlit/`
+* `.ipynb_checkpoints/`
+* `.vscode/`
+
+---
+
 ## 🤖 Machine Learning Models
 
 ### 1. Crop Recommendation Model
@@ -135,7 +171,11 @@ Predicts crop yield (Ton/Hectare) using:
 
 **Purpose:** Estimate crop yield using agricultural production data.
 
-**R² Score:** 0.8245 (82.45%)
+**Evaluation Metrics:**
+
+* R² Score: **0.7963 (79.63%)**
+* MAE (Mean Absolute Error): **12.13**
+* RMSE (Root Mean Squared Error): **331.94**
 
 ---
 
@@ -156,9 +196,9 @@ Contains historical agricultural data including:
 
 Contains environmental attributes:
 
-* N
-* P
-* K
+* Nitrogen (N)
+* Phosphorus (P)
+* Potassium (K)
 * Temperature
 * Humidity
 * pH
@@ -202,31 +242,46 @@ http://localhost:8501
 ### Crop Recommendation
 
 * Accuracy: ~99%
-* Fast real-time predictions
+* Real-time crop recommendation
 * Confidence score included
+* Feature importance visualization
 
 ### Yield Prediction
 
-* R² Score: 0.8245
-* Supports state-wise and crop-wise predictions
+* R² Score: 0.7963
+* MAE: 12.13
+* RMSE: 331.94
+* State-wise and crop-wise prediction support
 * Downloadable prediction reports
+
+---
+
+## 🎯 Applications
+
+* Smart Farming
+* Agricultural Planning
+* Crop Selection Assistance
+* Yield Forecasting
+* Farmer Decision Support Systems
+* Agricultural Data Analytics
 
 ---
 
 ## 🔮 Future Enhancements
 
 * 🌦 Live Weather API Integration
-* 🗺 Interactive India Map
+* 🗺 Interactive India Map Visualization
 * 🤖 AI Chatbot for Farmers
 * 🌐 Multi-language Support (Hindi & Regional Languages)
-* 📱 Mobile App Version
+* 📱 Mobile Application
 * 💰 Profit Prediction Module
+* 📈 Future Yield Forecasting
 
 ---
 
 ## 👨‍💻 Developer
 
-**Sachin **
+**Sachin**
 
 BCA (Artificial Intelligence & Machine Learning)
 
@@ -239,7 +294,15 @@ Machine Learning Major Project – 2026
 ## 📜 License
 
 This project is developed for educational and research purposes.
-Feel free to use and modify it with proper attribution.
 
-```
-```
+Feel free to use, modify, and enhance the project with proper attribution.
+
+---
+
+## ⭐ Acknowledgements
+
+* Streamlit Community Cloud
+* Scikit-Learn
+* Plotly
+* Kaggle Datasets
+* Indian Agricultural Data Sources

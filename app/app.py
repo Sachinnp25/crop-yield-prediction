@@ -22,10 +22,10 @@ def load_data():
 
 try:
     crop_df = load_data()
-
 except Exception as e:
     st.error(f"Dataset Error: {e}")
     st.stop()
+
 # ============================
 # PAGE CONFIG
 # ============================
@@ -88,20 +88,20 @@ if page == "Home":
 
     with col1:
         st.metric(
-    "Crop Records",
-    f"{len(crop_df):,}"
-)
+            "Crop Records",
+            f"{len(crop_df):,}"
+        )
 
     with col2:
         st.metric(
-    "Recommendation Accuracy",
-    "99.3%"
-)
+            "Recommendation Accuracy",
+            "99.3%"
+        )
     with col3:
         st.metric(
-    "Yield Model R²",
-    "0.8245"
-)
+            "Yield Model R²",
+            "0.8245"
+        )
 
 # ==================================================
 # CROP RECOMMENDATION
@@ -136,7 +136,6 @@ elif page == "Crop Recommendation":
         proba = crop_model.predict_proba(data)
         confidence = np.max(proba) * 100
 
-        # FIXED: These components must live INSIDE the button action block
         col1, col2 = st.columns(2)
 
         with col1:
@@ -162,6 +161,45 @@ elif page == "Crop Recommendation":
             file_name="crop_recommendation_report.csv",
             mime="text/csv"
         )
+
+    # FIXED: Re-indented to sit firmly inside the 'Crop Recommendation' page layout
+    st.markdown("---")
+    st.subheader("📊 Feature Importance")
+
+    importance = crop_model.feature_importances_
+
+    features = [
+        "Nitrogen",
+        "Phosphorus",
+        "Potassium",
+        "Temperature",
+        "Humidity",
+        "pH",
+        "Rainfall"
+    ]
+
+    importance_df = pd.DataFrame({
+        "Feature": features,
+        "Importance": importance
+    })
+
+    importance_df = importance_df.sort_values(
+        by="Importance",
+        ascending=True
+    )
+
+    fig = px.bar(
+        importance_df,
+        x="Importance",
+        y="Feature",
+        orientation="h",
+        title="Factors Influencing Crop Recommendation"
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
 # ==================================================
 # YIELD PREDICTION
@@ -229,7 +267,6 @@ elif page == "Yield Prediction":
     if st.button("Predict Yield"):
 
         try:
-
             state_encoded = encoders["State_Name"].transform([state])[0]
             district_encoded = encoders["District_Name"].transform([district])[0]
             season_encoded = encoders["Season"].transform([season])[0]
@@ -340,7 +377,6 @@ elif page == "Dashboard":
 
     st.plotly_chart(fig2, use_container_width=True)
     
-    # FIXED: Re-indented the summary metrics to keep them inside the Dashboard page
     st.subheader("📋 Dataset Summary")
 
     summary = pd.DataFrame({

@@ -4,7 +4,11 @@ import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import r2_score
+from sklearn.metrics import (
+    r2_score,
+    mean_absolute_error,
+    mean_squared_error
+)
 
 # Load dataset
 df = pd.read_csv("dataset/crop_data.csv")
@@ -62,7 +66,13 @@ model.fit(X_train, y_train)
 # Evaluate
 pred = model.predict(X_test)
 
-print("R2 Score:", r2_score(y_test, pred))
+r2 = r2_score(y_test, pred)
+mae = mean_absolute_error(y_test, pred)
+rmse = mean_squared_error(y_test, pred) ** 0.5
+
+print("R2 Score:", r2)
+print("MAE:", mae)
+print("RMSE:", rmse)
 
 # Save model
 joblib.dump(model, "models/yield_model.pkl")
