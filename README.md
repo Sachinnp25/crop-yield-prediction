@@ -25,6 +25,36 @@ https://github.com/Sachinnp25/crop-yield-prediction
 
 ---
 
+## 📸 Project Screenshots
+
+### 🏠 Home Page
+
+![Home Page](screenshots/home_page.png)
+
+---
+
+### 🌱 Crop Recommendation
+
+![Crop Recommendation](screenshots/crop_recommendation.png)
+
+---
+
+### 📈 Yield Prediction
+
+![Yield Prediction](screenshots/yield_prediction.png)
+
+---
+
+### 📊 Dashboard
+
+![Dashboard](screenshots/dashboard_top.png)
+
+---
+
+### ℹ️ About Page
+
+![About Page](screenshots/about_page.png)
+
 ## 📂 Project Structure
 
 ```plaintext
